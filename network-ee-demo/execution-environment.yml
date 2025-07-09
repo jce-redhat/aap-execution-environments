@@ -1,0 +1,39 @@
+# https://ansible-builder.readthedocs.io/
+---
+version: 3
+
+build_arg_defaults:
+  # add '--force-with-deps' if building from an EE that already contains
+  # collections, such as ee-supported-rhel[89]
+  ANSIBLE_GALAXY_CLI_COLLECTION_OPTS: '-vvv'
+
+images:
+  base_image:
+    name: 'registry.redhat.io/ansible-automation-platform-25/ee-minimal-rhel8:latest'
+
+dependencies:
+  galaxy: requirements.yml
+#  python: requirements.txt
+
+options:
+  # required for any base_image based on UBI
+  package_manager_path: /usr/bin/microdnf
+
+# add custom ansible.cfg which defines collection install sources
+additional_build_files:
+  - src: ansible.cfg
+    dest: configs
+
+additional_build_steps:
+#    prepend_base:
+#      # update python tooling
+#      - RUN $PYCMD -m pip install --upgrade pip setuptools
+    prepend_galaxy:
+      # add custom ansible.cfg which defines collection install sources
+      - ADD _build/configs/ansible.cfg /etc/ansible/ansible.cfg
+      # pass through environment variables containing the tokens used
+      # to authenticate to collection sources
+      - ARG ANSIBLE_GALAXY_SERVER_CERTIFIED_TOKEN
+      - ARG ANSIBLE_GALAXY_SERVER_VALIDATED_TOKEN
+
+...

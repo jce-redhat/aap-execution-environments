@@ -1,0 +1,39 @@
+---
+collections:
+  # Automation Hub certified collections
+  - name: ansible.netcommon
+  - name: ansible.network
+  - name: ansible.posix
+  - name: ansible.security
+  - name: ansible.utils
+  - name: arista.eos
+  - name: cisco.asa
+  - name: cisco.ios
+  - name: cisco.iosxr
+  - name: cisco.nxos
+  - name: frr.frr
+  - name: f5networks.f5_bigip
+  - name: f5networks.f5_modules
+  - name: ibm.qradar
+  - name: infoblox.nios_modules
+  - name: junipernetworks.junos
+  - name: openvswitch.openvswitch
+  - name: redhat.rhel_system_roles
+  - name: servicenow.itsm
+  - name: splunk.es
+  - name: trendmicro.deepsec
+  - name: vmware.vmware_rest
+  - name: vyos.vyos
+
+  # Automation Hub validated collections
+  - name: network.base
+  - name: network.backup
+  - name: network.bgp
+  - name: network.interfaces
+  - name: network.ospf
+  - name: network.vpn
+
+  # Galaxy community collections
+  - name: juniper.device
+
+...
