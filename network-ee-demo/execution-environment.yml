@@ -25,9 +25,9 @@ additional_build_files:
     dest: configs
 
 additional_build_steps:
-#    prepend_base:
-#      # update python tooling
-#      - RUN $PYCMD -m pip install --upgrade pip setuptools
+    prepend_base:
+      # update RPM packages
+      - RUN $PKGMGR update -y
     prepend_galaxy:
       # add custom ansible.cfg which defines collection install sources
       - ADD _build/configs/ansible.cfg /etc/ansible/ansible.cfg
