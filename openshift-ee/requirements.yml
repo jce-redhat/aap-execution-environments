@@ -1,0 +1,11 @@
+---
+collections:
+  # Automation Hub certified collections
+  - name: ansible.utils
+  - name: kubernetes.core
+  - name: redhat.openshift
+  - name: redhat.openshift_virtualization
+  # Automation Hub validated collections
+  - name: infra.openshift_virtualization_ops
+
+...
