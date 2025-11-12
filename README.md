@@ -1,6 +1,6 @@
 # AAP Execution Environments
 
-This repository contains a set of demo execution environment (EE) image definitions which can be used by the [ansible-builder](https://ansible.readthedocs.io/) tool to create EEs for use with Ansible Automation Platform (AAP).
+This repository contains a set of demo execution environment (EE) and decision environment (DE) image definitions.  They can be used with the [ansible-builder](https://ansible.readthedocs.io/) tool to create EEs and DEs for use with Ansible Automation Platform (AAP).
 
 ## Prerequisites
 
@@ -10,7 +10,7 @@ This repository contains a set of demo execution environment (EE) image definiti
 ```
 sudo dnf install -y podman git-core python3-pip 
 ```
-4. The `ansible-builder` command must be installed, either using the upstream Python package or the ansible-builder RPM from the Ansible Automation Platform RPM repository.
+4. The `ansible-builder` command must be installed, either using the ansible-builder RPM from the Ansible Automation Platform RPM repository, or the upstream Python package (the 'ansible-dev-tools' package is recommended).
 
 ## Building an execution environment image
 
