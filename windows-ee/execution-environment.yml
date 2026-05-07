@@ -1,0 +1,40 @@
+---
+version: 3
+
+build_arg_defaults:
+  ANSIBLE_GALAXY_CLI_COLLECTION_OPTS: '-vvv'
+
+images:
+  base_image:
+    name: registry.redhat.io/ansible-automation-platform-26/ee-minimal-rhel9:latest
+dependencies:
+  galaxy:
+    collections:
+      - name: ansible.windows
+      - name: microsoft.ad
+      - name: microsoft.hyperv
+      - name: microsoft.iis
+      - name: microsoft.mecm
+      - name: microsoft.scom
+      - name: microsoft.sql
+  python:
+    - pywinrm>=0.4.3
+  python_interpreter:
+    python_path: /usr/bin/python3.12
+
+options:
+  package_manager_path: /usr/bin/microdnf
+
+additional_build_files:
+  - src: ansible.cfg
+    dest: configs
+
+additional_build_steps:
+  prepend_base:
+    - RUN $PKGMGR -y update
+  prepend_galaxy:
+    - ADD _build/configs/ansible.cfg /etc/ansible/ansible.cfg
+    - ARG ANSIBLE_GALAXY_SERVER_CERTIFIED_TOKEN
+    - ARG ANSIBLE_GALAXY_SERVER_VALIDATED_TOKEN
+
+...
